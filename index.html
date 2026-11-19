@@ -104,15 +104,14 @@ header.nav{
   .nav-toggle{display:block;}
 }
 
-/* ---------- HERO ---------- */
+/* ---------- HERO (photo left + about merged) ---------- */
 .hero{
   background:
     radial-gradient(ellipse 900px 500px at 78% 8%, rgba(92,31,40,0.55), transparent 60%),
     linear-gradient(180deg, var(--bg-black) 0%, var(--bg-black-2) 100%);
-  padding-top:64px;
+  padding:64px 0 100px;
   border-bottom:1px solid var(--line-dark);
 }
-.hero-inner{padding-bottom:56px;}
 .hero-top{
   display:flex;justify-content:space-between;align-items:flex-start;
   padding-top:26px;gap:24px;flex-wrap:wrap;
@@ -126,23 +125,14 @@ header.nav{
 }
 @media(max-width:700px){.hero-top-right{text-align:left;}}
 
-.hero-name-row{position:relative;margin-top:24px;min-height:420px;}
-@media(max-width:700px){.hero-name-row{min-height:0;}}
-.hero-name{
-  font-size:clamp(64px,13vw,168px);
-  line-height:.86;
-  font-weight:400;
-  margin:0;
-  letter-spacing:-.01em;
-  color:var(--cream);
+.hero-grid{
+  display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start;
+  margin-top:48px;
 }
-.hero-name .italic{color:var(--cream);}
-.hero-photo{
-  position:absolute;
-  right:2%;
-  top:0;
-  width:min(300px,26vw);
-}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px;}}
+
+.hero-photo-col{position:sticky;top:110px;}
+@media(max-width:900px){.hero-photo-col{position:static;max-width:280px;}}
 .hero-photo-inner{
   position:relative;
   background:linear-gradient(155deg,var(--maroon-800),var(--bg-black-2) 75%);
@@ -160,24 +150,27 @@ header.nav{
   background:rgba(21,13,13,.55);padding:3px 9px;letter-spacing:.02em;
   backdrop-filter:blur(3px);
 }
-.hero-photo-side{
-  writing-mode:vertical-rl;
-  position:absolute;right:-22px;top:8px;bottom:8px;
-  font-size:10.5px;letter-spacing:.18em;color:var(--rose-dim);
-  display:flex;align-items:center;
+.hero-photo-caption{
+  margin-top:16px;font-size:11px;letter-spacing:.1em;color:var(--rose-dim);
+  display:flex;align-items:center;gap:8px;
 }
-@media(max-width:700px){
-  .hero-photo{position:static;width:58%;margin:26px 0 0 auto;}
-  .hero-photo-side{display:none;}
-}
+.hero-photo-caption .dot{width:6px;height:6px;border-radius:50%;background:var(--rose);display:inline-block;}
 
-.hero-bottom{
-  margin-top:20px;display:flex;justify-content:space-between;align-items:flex-end;
-  flex-wrap:wrap;gap:28px;position:relative;z-index:2;
+.hero-name{
+  font-size:clamp(52px,8vw,96px);
+  line-height:.95;font-weight:400;margin:0 0 20px;letter-spacing:-.01em;color:var(--cream);
 }
-.hero-lede{
-  max-width:340px;font-size:16px;line-height:1.5;color:var(--cream-2);opacity:.85;margin:0;
+.hero-name .italic{color:var(--rose);}
+.hero-about-p{
+  font-size:18px;line-height:1.6;color:var(--cream-2);opacity:.88;max-width:580px;
+  margin:0 0 18px;font-family:'Fraunces',serif;font-weight:300;
 }
+.hero-about-note{
+  display:flex;gap:10px;align-items:flex-start;font-size:11.5px;letter-spacing:.08em;color:var(--rose);
+  line-height:1.6;margin:22px 0 32px;
+}
+.hero-about-note .spark{font-size:15px;margin-top:1px;}
+
 .hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
 .btn-solid{
   background:var(--cream);color:var(--ink);
@@ -192,8 +185,6 @@ header.nav{
   transition:border-color .3s,color .3s;
 }
 .btn-line:hover{border-color:var(--rose);color:var(--rose);}
-.scroll-hint{font-size:11px;letter-spacing:.12em;color:var(--rose-dim);margin-left:6px;}
-@media(max-width:700px){.scroll-hint{display:none;}}
 
 .hero-meta{
   margin-top:40px;padding-top:22px;border-top:1px solid var(--line-dark);
@@ -201,66 +192,11 @@ header.nav{
   display:flex;align-items:center;gap:8px;
 }
 .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:var(--rose);display:inline-block;}
-
-/* ---------- ABOUT ---------- */
-.about{background:var(--bg-black);padding:120px 0;border-bottom:1px solid var(--line-dark);}
-.about-grid{
-  display:grid;grid-template-columns:180px 1fr 220px;gap:40px;align-items:start;
-}
-@media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
-.index-tag{font-size:12px;color:var(--rose-dim);letter-spacing:.08em;margin-bottom:10px;}
-.about-h{font-size:clamp(40px,6vw,68px);line-height:1.05;font-weight:400;margin:0 0 30px;}
-.about-p{font-size:19px;line-height:1.55;color:var(--cream-2);opacity:.88;max-width:640px;margin:0 0 22px;font-family:'Fraunces',serif;font-weight:300;}
 .link-more{
-  display:inline-block;margin-top:8px;font-size:12.5px;letter-spacing:.1em;font-weight:600;
+  display:inline-block;margin-top:2px;font-size:12.5px;letter-spacing:.1em;font-weight:600;
   border-bottom:1px solid var(--rose-dim);padding-bottom:5px;transition:border-color .3s,color .3s;
 }
 .link-more:hover{border-color:var(--rose);color:var(--rose);}
-.about-note{display:flex;gap:10px;align-items:flex-start;font-size:11.5px;letter-spacing:.08em;color:var(--rose);line-height:1.6;}
-.about-note .spark{font-size:15px;margin-top:1px;}
-@media(max-width:900px){.about-note{margin-top:6px;}}
-
-/* ---------- CAPABILITIES ---------- */
-.capabilities{background:var(--paper);color:var(--ink);padding:120px 0;}
-.eyebrow-dark{color:var(--maroon-700);}
-.cap-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:56px;}
-.cap-h{font-size:clamp(48px,7vw,84px);font-weight:400;margin:6px 0 0;line-height:1;}
-.cap-sub{max-width:320px;font-size:15px;color:var(--ink-soft);line-height:1.55;margin:0;}
-.cap-list{border-top:1px solid var(--line-light);}
-.cap-row{
-  display:grid;grid-template-columns:50px 40px 1fr 1fr 24px;align-items:center;gap:24px;
-  padding:30px 24px;border-bottom:1px solid var(--line-light);
-  transition:background .3s;
-}
-.cap-row:hover{background:rgba(92,31,40,0.05);}
-.cap-num{font-size:13px;color:var(--maroon-700);letter-spacing:.05em;}
-.cap-icon{font-family:'Fraunces',serif;font-size:20px;color:var(--maroon-700);}
-.cap-title{font-family:'Fraunces',serif;font-size:24px;letter-spacing:.01em;}
-.cap-desc{font-size:14.5px;color:var(--ink-soft);line-height:1.5;}
-.cap-arrow{font-size:20px;color:var(--maroon-700);text-align:right;}
-@media(max-width:800px){
-  .cap-row{grid-template-columns:30px 1fr;grid-template-areas:"num title" ". desc";row-gap:8px;padding:22px 4px;}
-  .cap-icon{display:none;}
-  .cap-num{grid-area:num;}
-  .cap-title{grid-area:title;font-size:19px;}
-  .cap-desc{grid-area:desc;grid-column:2;}
-  .cap-arrow{display:none;}
-}
-
-/* ---------- EXPLORING ---------- */
-.exploring{background:var(--bg-black);padding:120px 0;border-bottom:1px solid var(--line-dark);}
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-@media(max-width:800px){.exp-grid{grid-template-columns:1fr;}}
-.exp-h{font-size:clamp(42px,6.5vw,72px);font-weight:400;line-height:1.02;margin:14px 0 22px;}
-.exp-p{max-width:420px;font-size:16px;line-height:1.55;color:var(--cream-2);opacity:.8;margin:0;}
-.exp-list{border-top:1px solid var(--line-dark);}
-.exp-row{
-  display:flex;align-items:center;gap:22px;padding:22px 0;border-bottom:1px solid var(--line-dark);
-}
-.exp-i{font-size:11px;color:var(--rose);width:20px;}
-.exp-t{font-family:'Fraunces',serif;font-size:26px;flex:1;}
-.exp-a{color:var(--rose);font-size:16px;}
-@media(max-width:500px){.exp-t{font-size:20px;}}
 
 /* ---------- WORK ---------- */
 .work{background:var(--paper);color:var(--ink);padding:120px 0 80px;}
@@ -329,7 +265,7 @@ header.nav{
 .other-link{font-size:11px;letter-spacing:.08em;font-weight:600;color:var(--maroon-700);}
 
 /* ---------- EXPERIENCE ---------- */
-.experience{background:var(--bg-black);}
+.experience{background:var(--bg-black);padding-bottom:40px;}
 .exp-stats{background:var(--maroon-700);}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);}
 .stat{padding:34px 26px;border-left:1px solid rgba(242,236,225,0.22);display:flex;align-items:center;gap:16px;}
@@ -345,8 +281,9 @@ header.nav{
 .exp-card{
   display:grid;grid-template-columns:110px 1fr;gap:32px;
   border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);
-  padding:48px 0;margin-bottom:90px;
+  padding:40px 0;margin-bottom:34px;
 }
+.exp-card + .exp-card{border-top:none;}
 .exp-card-tag{
   width:56px;height:56px;border:1px solid var(--rose-dim);display:flex;align-items:center;justify-content:center;
   font-size:14px;color:var(--rose);
@@ -356,15 +293,6 @@ header.nav{
 .exp-card-foot{display:flex;gap:32px;font-size:11.5px;letter-spacing:.1em;color:var(--rose-dim);border-top:1px solid var(--line-dark);padding-top:18px;}
 @media(max-width:600px){.exp-card{grid-template-columns:1fr;}}
 
-.how-i-build{padding-bottom:120px;}
-.hib-track{position:relative;margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
-.hib-line{position:absolute;top:6px;left:0;right:0;height:1px;background:var(--line-dark);}
-.hib-step{position:relative;padding-top:26px;}
-.hib-dot{position:absolute;top:0;left:0;width:11px;height:11px;border-radius:50%;background:var(--rose);}
-.hib-num{font-size:11px;color:var(--rose-dim);margin-bottom:14px;}
-.hib-t{font-family:'Fraunces',serif;font-size:20px;letter-spacing:.03em;margin-bottom:8px;}
-.hib-d{font-size:13px;color:var(--cream-2);opacity:.75;line-height:1.4;}
-@media(max-width:800px){.hib-track{grid-template-columns:repeat(2,1fr);row-gap:36px;} .hib-line{display:none;}}
 
 /* ---------- CERTIFICATES ---------- */
 .certs{background:var(--paper);color:var(--ink);padding:120px 0;}
@@ -441,6 +369,58 @@ header.nav{
 .cf-field input:focus,.cf-field textarea:focus{outline:none;border-color:var(--rose);}
 .cf-submit{border:none;cursor:pointer;margin-top:4px;width:100%;justify-content:center;}
 .cf-note{font-size:11.5px;color:var(--cream-2);opacity:.55;margin:0;line-height:1.4;}
+
+/* ---------- ASK ME (AI assistant widget) ---------- */
+.ai-toggle{
+  position:fixed;right:26px;bottom:26px;z-index:200;
+  background:var(--cream);color:var(--ink);border:none;cursor:pointer;
+  padding:15px 20px;font-family:'Inter',sans-serif;font-size:12.5px;letter-spacing:.08em;font-weight:600;
+  display:flex;align-items:center;gap:9px;border-radius:40px;
+  box-shadow:0 14px 34px rgba(0,0,0,.4);
+  transition:transform .3s var(--ease);
+}
+.ai-toggle:hover{transform:translateY(-2px);}
+.ai-toggle-icon{color:var(--maroon-700);font-size:15px;}
+@media(max-width:560px){.ai-toggle-label{display:none;} .ai-toggle{padding:15px;border-radius:50%;}}
+
+.ai-panel{
+  position:fixed;right:26px;bottom:96px;z-index:200;
+  width:min(380px,calc(100vw - 40px));height:min(540px,calc(100vh - 150px));
+  background:var(--bg-black-2);border:1px solid var(--line-dark);
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.55);
+}
+.ai-panel[hidden]{display:none;}
+.ai-panel-head{
+  padding:18px 20px;border-bottom:1px solid var(--line-dark);
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(160deg,var(--maroon-900),var(--bg-black-2));
+}
+.ai-panel-title{font-size:19px;font-weight:400;color:var(--cream);}
+.ai-close{background:none;border:none;color:var(--cream-2);font-size:22px;line-height:1;cursor:pointer;padding:2px 6px;}
+.ai-close:hover{color:var(--rose);}
+.ai-messages{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px;}
+.ai-msg{font-size:14px;line-height:1.55;max-width:88%;padding:11px 14px;}
+.ai-msg-bot{background:rgba(242,236,225,0.06);color:var(--cream-2);border:1px solid var(--line-dark);align-self:flex-start;}
+.ai-msg-user{background:var(--rose);color:var(--ink);align-self:flex-end;font-weight:500;}
+.ai-suggestions{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 14px;}
+.ai-chip{
+  border:1px solid var(--line-dark);background:transparent;color:var(--cream-2);
+  font-size:11.5px;letter-spacing:.03em;padding:8px 12px;cursor:pointer;transition:border-color .25s,color .25s;
+}
+.ai-chip:hover{border-color:var(--rose);color:var(--rose);}
+.ai-input-row{display:flex;gap:10px;padding:16px 20px;border-top:1px solid var(--line-dark);}
+.ai-input-row input{
+  flex:1;background:rgba(242,236,225,0.05);border:1px solid var(--line-dark);color:var(--cream);
+  font-family:'Inter',sans-serif;font-size:13.5px;padding:11px 13px;
+}
+.ai-input-row input::placeholder{color:rgba(242,236,225,0.4);}
+.ai-input-row input:focus{outline:none;border-color:var(--rose);}
+.ai-send{
+  background:var(--cream);color:var(--ink);border:none;width:42px;cursor:pointer;
+  font-size:15px;transition:background .25s;
+}
+.ai-send:hover{background:#fff;}
 </style>
 </head>
 <body>
@@ -463,14 +443,14 @@ header.nav{
 
 <main id="top">
 
-<!-- ================= HERO ================= -->
-<section class="hero">
+<!-- ================= HERO + ABOUT ================= -->
+<section id="about" class="hero">
   <div class="wrap hero-inner">
     <div class="hero-top">
       <div class="hero-top-left">
-        <div class="eyebrow">CREATIVE PORTFOLIO</div>
-        <div class="hero-role">SOFTWARE ENGINEERING / 04</div>
-        <div class="hero-role-strong">SOFTWARE ENGINEERING STUDENT · FULL-STACK DEVELOPER</div>
+        <div class="eyebrow">SOFTWARE ENGINEERING / AI</div>
+        <div class="hero-role">ARBA MINCH UNIVERSITY · CLASS OF 2028</div>
+        <div class="hero-role-strong">FULL-STACK DEVELOPER, MOVING TOWARD AI ENGINEERING</div>
       </div>
       <div class="hero-top-right">
         <div>CURRENTLY EXPLORING AI</div>
@@ -478,110 +458,32 @@ header.nav{
       </div>
     </div>
 
-    <div class="hero-name-row">
-      <h1 class="hero-name serif">REDIET<br><span class="italic">Girma</span></h1>
-      <div class="hero-photo">
+    <div class="hero-grid">
+      <div class="hero-photo-col reveal">
         <div class="hero-photo-inner">
           <img src="images/profile.jpg" alt="Portrait of Rediet Girma">
           <span class="hero-photo-tag">RG</span>
         </div>
-        <div class="hero-photo-side">A VISUAL PRACTICE IN PROGRESS</div>
+        <div class="hero-photo-caption"><span class="dot"></span>ADDIS ABABA, ETHIOPIA</div>
       </div>
-    </div>
 
-    <div class="hero-bottom">
-      <p class="hero-lede">Building digital experiences today while<br>exploring the future of artificial intelligence.</p>
-      <div class="hero-actions">
-        <a class="btn-solid" href="#work">VIEW MY WORK ↘</a>
-        <a class="btn-line" href="#contact">GET IN TOUCH ↗</a>
-        <div class="scroll-hint">SCROLL TO EXPLORE ↘</div>
+      <div class="hero-text-col reveal">
+        <h1 class="hero-name serif">Rediet <span class="italic">Girma</span></h1>
+        <p class="hero-about-p">I'm a fourth-year Software Engineering student at Arba Minch University, interested in the space where reliable systems, data, and artificial intelligence meet.</p>
+        <p class="hero-about-p">My work is grounded in learning by building: full-stack systems in C#, .NET and JavaScript, practical data analysis in Python, and the foundations I'm laying for a future in AI engineering — through hands-on work with LLMs, LangChain and RAG.</p>
+        <div class="hero-about-note">
+          <span class="spark">✦</span>
+          <div>STILL LEARNING. ALREADY BUILDING.</div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn-solid" href="#work">VIEW MY WORK ↘</a>
+          <a class="btn-line" href="#contact">GET IN TOUCH ↗</a>
+          <a class="link-more" href="https://github.com/R3D-GM" target="_blank" rel="noopener">MORE ON GITHUB ↗</a>
+        </div>
+        <div class="hero-meta">
+          <span class="dot"></span> ETHIOPIA / 2026
+        </div>
       </div>
-    </div>
-
-    <div class="hero-meta">
-      <span class="dot"></span> ETHIOPIA / 2026
-    </div>
-  </div>
-</section>
-
-<!-- ================= ABOUT ================= -->
-<section id="about" class="about">
-  <div class="wrap about-grid">
-    <div class="about-side reveal">
-      <div class="index-tag">01 / 06</div>
-      <div class="eyebrow">A LITTLE ABOUT ME</div>
-    </div>
-    <div class="about-main reveal">
-      <h2 class="serif about-h">Software with<br><span class="italic">intention.</span></h2>
-      <p class="about-p">I'm a Software Engineering student interested in the space where thoughtful interfaces, reliable systems, data, and artificial intelligence meet.</p>
-      <p class="about-p">My work is grounded in learning by building: full-stack systems in C#, .NET and JavaScript, practical data analysis in Python, and the early foundations I'm laying for a future in AI engineering.</p>
-      <a class="link-more" href="https://github.com/R3D-GM" target="_blank" rel="noopener">MORE ON GITHUB ↗</a>
-    </div>
-    <div class="about-note reveal">
-      <span class="spark">✦</span>
-      <div>STILL LEARNING.<br>ALREADY BUILDING.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CAPABILITIES ================= -->
-<section id="capabilities" class="capabilities">
-  <div class="wrap">
-    <div class="cap-head reveal">
-      <div>
-        <div class="eyebrow eyebrow-dark">02 / WHAT I BUILD</div>
-        <h2 class="serif cap-h">Capabilities</h2>
-      </div>
-      <p class="cap-sub">A growing practice across engineering, data, design, and the emerging AI landscape.</p>
-    </div>
-
-    <div class="cap-list">
-      <div class="cap-row reveal">
-        <div class="cap-num">01</div>
-        <div class="cap-icon">&lt;/&gt;</div>
-        <div class="cap-title">FULL-STACK DEVELOPMENT</div>
-        <div class="cap-desc">Building functional, responsive web experiences with HTML, CSS, JavaScript, PHP, .NET and MySQL.</div>
-        <div class="cap-arrow">›</div>
-      </div>
-      <div class="cap-row reveal">
-        <div class="cap-num">02</div>
-        <div class="cap-icon">{ }</div>
-        <div class="cap-title">SOFTWARE ENGINEERING</div>
-        <div class="cap-desc">Strengthening the fundamentals: Java, C++, C#, data structures, algorithms, and clean problem solving.</div>
-        <div class="cap-arrow">›</div>
-      </div>
-      <div class="cap-row reveal">
-        <div class="cap-num">03</div>
-        <div class="cap-icon">☰</div>
-        <div class="cap-title">DATA &amp; VISUALIZATION</div>
-        <div class="cap-desc">Using Python — pandas, NumPy, Matplotlib, Seaborn — to explore data and make information easier to understand.</div>
-        <div class="cap-arrow">›</div>
-      </div>
-      <div class="cap-row reveal">
-        <div class="cap-num">04</div>
-        <div class="cap-icon">✧</div>
-        <div class="cap-title">AI / MACHINE LEARNING</div>
-        <div class="cap-desc">Growing from a software engineering foundation toward applied machine learning and AI, with AWS fundamentals underway.</div>
-        <div class="cap-arrow">›</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CURRENTLY EXPLORING ================= -->
-<section class="exploring">
-  <div class="wrap exp-grid">
-    <div class="reveal">
-      <div class="eyebrow">03 / THE DIRECTION</div>
-      <h2 class="serif exp-h">Currently<br><span class="italic">exploring.</span></h2>
-      <p class="exp-p">I'm continuously expanding my software engineering foundation toward data, machine learning, and applied AI.</p>
-    </div>
-    <div class="exp-list reveal">
-      <div class="exp-row"><span class="exp-i">01</span><span class="exp-t">Python for data &amp; ML</span><span class="exp-a">↗</span></div>
-      <div class="exp-row"><span class="exp-i">02</span><span class="exp-t">Data analysis &amp; visualization</span><span class="exp-a">↗</span></div>
-      <div class="exp-row"><span class="exp-i">03</span><span class="exp-t">Machine learning</span><span class="exp-a">↗</span></div>
-      <div class="exp-row"><span class="exp-i">04</span><span class="exp-t">Cloud fundamentals (AWS)</span><span class="exp-a">↗</span></div>
-      <div class="exp-row"><span class="exp-i">05</span><span class="exp-t">AI engineering</span><span class="exp-a">↗</span></div>
     </div>
   </div>
 </section>
@@ -590,7 +492,7 @@ header.nav{
 <section id="work" class="work">
   <div class="wrap">
     <div class="work-head reveal">
-      <div class="eyebrow eyebrow-dark">04 / SELECTED WORK</div>
+      <div class="eyebrow eyebrow-dark">01 / SELECTED WORK</div>
       <h2 class="serif cap-h">Featured<br><span class="italic ink-rose">projects.</span></h2>
     </div>
   </div>
@@ -644,7 +546,7 @@ header.nav{
   <!-- Other projects grid -->
   <div class="wrap">
     <div class="other-head reveal">
-      <div class="eyebrow eyebrow-dark">05 / IN THE WORKSHOP</div>
+      <div class="eyebrow eyebrow-dark">02 / IN THE WORKSHOP</div>
       <h2 class="serif other-h">Smaller <span class="italic ink-rose">builds</span> &amp; practice.</h2>
       <p class="cap-sub">Hands-on exercises where I worked through a single concept end to end.</p>
     </div>
@@ -720,7 +622,7 @@ header.nav{
 
   <div class="wrap">
     <div class="exp-lead reveal">
-      <div class="eyebrow">06 / EXPERIENCE</div>
+      <div class="eyebrow">03 / EXPERIENCE</div>
       <h2 class="serif exp-h2">Learning in<br><span class="italic">motion.</span></h2>
       <p class="exp-p2">The next chapter is being written through hands-on work, collaboration, and deliberate practice.</p>
     </div>
@@ -728,25 +630,26 @@ header.nav{
     <div class="exp-card reveal">
       <div class="exp-card-tag">01</div>
       <div class="exp-card-body">
-        <div class="eyebrow">CURRENT EXPERIENCE</div>
-        <h3 class="serif exp-card-title">RedCloud <span class="italic">/ Intern</span></h3>
-        <p class="exp-card-desc">Contributing to internal tooling, including the ECIMS training-management system, while learning how software gets built and shipped inside a real engineering team.</p>
+        <div class="eyebrow">SOFTWARE DEVELOPMENT INTERN</div>
+        <h3 class="serif exp-card-title">Red Cloud IT Park</h3>
+        <p class="exp-card-desc">Built the ECIMS/TCS Training Management System — UAT workflows with approval checklists, digital sign-off, and system integration — on ASP.NET Core MVC, Entity Framework Core, and SQLite.</p>
         <div class="exp-card-foot">
           <span>INTERNSHIP</span>
-          <span>ROLE IN PROGRESS</span>
+          <span>JUN – AUG 2026</span>
         </div>
       </div>
     </div>
 
-    <div class="how-i-build reveal">
-      <div class="eyebrow">HOW I BUILD</div>
-      <div class="hib-track">
-        <div class="hib-line"></div>
-        <div class="hib-step"><span class="hib-dot"></span><div class="hib-num">01</div><div class="hib-t">DISCOVER</div><div class="hib-d">Understand the problem.</div></div>
-        <div class="hib-step"><span class="hib-dot"></span><div class="hib-num">02</div><div class="hib-t">PLAN</div><div class="hib-d">Structure the solution.</div></div>
-        <div class="hib-step"><span class="hib-dot"></span><div class="hib-num">03</div><div class="hib-t">DESIGN</div><div class="hib-d">Think through the experience.</div></div>
-        <div class="hib-step"><span class="hib-dot"></span><div class="hib-num">04</div><div class="hib-t">BUILD</div><div class="hib-d">Develop the actual product.</div></div>
-        <div class="hib-step"><span class="hib-dot"></span><div class="hib-num">05</div><div class="hib-t">LEARN</div><div class="hib-d">Improve through feedback.</div></div>
+    <div class="exp-card reveal">
+      <div class="exp-card-tag">02</div>
+      <div class="exp-card-body">
+        <div class="eyebrow">MACHINE LEARNING INTERN</div>
+        <h3 class="serif exp-card-title">FutureInterns</h3>
+        <p class="exp-card-desc">Built ML models and systems for sales &amp; demand forecasting, support-ticket classification and prioritization, and a resume/candidate screening system.</p>
+        <div class="exp-card-foot">
+          <span>INTERNSHIP</span>
+          <span>JUL – AUG 2026</span>
+        </div>
       </div>
     </div>
   </div>
@@ -756,7 +659,7 @@ header.nav{
 <section id="certificates" class="certs">
   <div class="wrap">
     <div class="cert-head reveal">
-      <div class="eyebrow eyebrow-dark">07 / PROOF OF WORK</div>
+      <div class="eyebrow eyebrow-dark">04 / PROOF OF WORK</div>
       <h2 class="serif cap-h">Certificates.</h2>
       <p class="cap-sub">Six certifications across cloud, algorithms, data, and AI — earned in 2026.</p>
     </div>
@@ -818,25 +721,27 @@ header.nav{
 <section class="stack">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow">08 / THE TOOLKIT</div>
+      <div class="eyebrow">05 / THE TOOLKIT</div>
       <h2 class="serif stack-h">Technology is a<br><span class="italic">conversation.</span></h2>
     </div>
     <div class="stack-grid reveal">
       <div class="stack-item"><span>01</span>Python</div>
       <div class="stack-item"><span>02</span>Java</div>
       <div class="stack-item"><span>03</span>JavaScript</div>
-      <div class="stack-item"><span>04</span>C++</div>
-      <div class="stack-item"><span>05</span>C#</div>
-      <div class="stack-item"><span>06</span>.NET</div>
-      <div class="stack-item"><span>07</span>PHP</div>
-      <div class="stack-item"><span>08</span>MySQL</div>
-      <div class="stack-item"><span>09</span>HTML5 / CSS3</div>
-      <div class="stack-item"><span>10</span>Bootstrap</div>
-      <div class="stack-item"><span>11</span>AWS</div>
-      <div class="stack-item"><span>12</span>Git / GitHub</div>
-      <div class="stack-item"><span>13</span>Pandas / NumPy</div>
-      <div class="stack-item"><span>14</span>Matplotlib / Seaborn</div>
-      <div class="stack-item"><span>15</span>Machine Learning</div>
+      <div class="stack-item"><span>04</span>C# / .NET</div>
+      <div class="stack-item"><span>05</span>SQL / MySQL</div>
+      <div class="stack-item"><span>06</span>Git / GitHub</div>
+      <div class="stack-item"><span>07</span>AWS</div>
+      <div class="stack-item"><span>08</span>Docker</div>
+      <div class="stack-item"><span>09</span>FastAPI</div>
+      <div class="stack-item"><span>10</span>LangChain</div>
+      <div class="stack-item"><span>11</span>Hugging Face</div>
+      <div class="stack-item"><span>12</span>LLM APIs</div>
+      <div class="stack-item"><span>13</span>Agents / Agentic AI</div>
+      <div class="stack-item"><span>14</span>Vector Databases</div>
+      <div class="stack-item"><span>15</span>RAG &amp; Vector Search</div>
+      <div class="stack-item"><span>16</span>LLM Evaluation</div>
+      <div class="stack-item"><span>17</span>Data Visualization</div>
     </div>
   </div>
 </section>
@@ -882,6 +787,23 @@ header.nav{
 
 </main>
 
+<!-- ================= ASK ME (AI assistant widget) ================= -->
+<button class="ai-toggle" id="aiToggle" aria-haspopup="dialog" aria-expanded="false">
+  <span class="ai-toggle-icon">✦</span><span class="ai-toggle-label">ASK ME ANYTHING</span>
+</button>
+<div class="ai-panel" id="aiPanel" role="dialog" aria-label="Ask about Rediet" hidden>
+  <div class="ai-panel-head">
+    <div class="ai-panel-title serif">Ask about <span class="italic ink-rose">Rediet.</span></div>
+    <button class="ai-close" id="aiClose" aria-label="Close">×</button>
+  </div>
+  <div class="ai-messages" id="aiMessages"></div>
+  <div class="ai-suggestions" id="aiSuggestions"></div>
+  <form class="ai-input-row" id="aiForm">
+    <input type="text" id="aiInput" placeholder="Ask a question…" autocomplete="off" aria-label="Your question">
+    <button type="submit" class="ai-send" aria-label="Send">↗</button>
+  </form>
+</div>
+
 <script>
 // Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
@@ -918,6 +840,128 @@ if(contactForm){
     window.location.href = `mailto:redietgirma2930@gmail.com?subject=${subject}&body=${body}`;
   });
 }
+
+// ---------- Ask Me (built-in Q&A assistant) ----------
+// This runs entirely in the browser — no server or API key required,
+// so it works anywhere this page is hosted.
+(function(){
+  const KB = [
+    {
+      keys: ['who','name','intro','yourself','about you','bio'],
+      a: "I'm Rediet Girma, a fourth-year Software Engineering student at Arba Minch University, based in Addis Ababa, Ethiopia. I build full-stack systems and I'm moving toward AI engineering — working hands-on with LLMs, LangChain, and RAG."
+    },
+    {
+      keys: ['study','university','school','education','degree','graduat','major','minch'],
+      a: "I'm studying Software Engineering at Arba Minch University, expected to graduate in June 2028."
+    },
+    {
+      keys: ['skill','tech','stack','language','tool','know','good at','proficient'],
+      a: "My core stack is Python, Java, JavaScript, C#/.NET, SQL and Git/GitHub. I'm also building hands-on experience with the AI engineering toolkit: Docker, FastAPI, LangChain, Hugging Face, LLM APIs, agentic AI, vector databases, RAG & vector search, LLM evaluation, and Python data-visualization libraries (Pandas, NumPy, Matplotlib, Seaborn)."
+    },
+    {
+      keys: ['ai','machine learning','ml','llm','rag','langchain','agent'],
+      a: "I'm actively growing from a software-engineering foundation into applied AI — hands-on with LLM APIs, LangChain, retrieval-augmented generation (RAG), and vector search, with an eye toward AI engineering roles."
+    },
+    {
+      keys: ['experience','intern','work','job','career','redcloud','red cloud','futureinterns','future interns'],
+      a: "I've done two internships: Software Development Intern at Red Cloud IT Park (Jun–Aug 2026), where I built the ECIMS/TCS Training Management System on ASP.NET Core, and Machine Learning Intern at FutureInterns (Jul–Aug 2026), where I built ML systems for sales & demand forecasting, support-ticket classification, and resume/candidate screening."
+    },
+    {
+      keys: ['project','ecims','flight','built','portfolio piece','featured'],
+      a: "Two featured projects: ECIMS Training Management System — a full enterprise-style training-lifecycle system on C#/ASP.NET Core/SQLite — and a Flight Delay Cascade Analysis of 3M+ US flights in Python (Pandas, Seaborn, Dash), which found that late-arriving aircraft is the single biggest driver of delay minutes. There are a few smaller practice builds further down the page too."
+    },
+    {
+      keys: ['certificate','certification','course','aws','udacity','kaggle'],
+      a: "I hold six certificates spanning cloud, algorithms, data, and AI: AWS Cloud Practitioner Essentials, Data Structures & Algorithms, Data Analytics & Visualization Using Python, Machine Learning Using Python, AI Fundamentals (Udacity), and Python (Kaggle)."
+    },
+    {
+      keys: ['contact','email','reach','hire','linkedin','github','connect','available','internship opportunit'],
+      a: "Best ways to reach me: email at redietgirma2930@gmail.com, or find me on GitHub (R3D-GM) and LinkedIn (redietgm) — links are in the Contact section below. I'm open to internships, collaborations, and junior AI/software engineering roles."
+    },
+    {
+      keys: ['location','based','live','ethiopia','addis'],
+      a: "I'm based in Addis Ababa, Ethiopia."
+    }
+  ];
+
+  const FALLBACK = "I don't have a ready answer for that one — try asking about my education, skills, experience, projects, or how to get in touch. Or email me directly at redietgirma2930@gmail.com.";
+  const GREETING = "Hi, I'm a quick assistant trained on Rediet's background. Ask me about her education, skills, experience, projects, or how to reach her.";
+
+  const SUGGESTIONS = ["What are your skills?","Tell me about your experience","What projects have you built?","How can I contact you?"];
+
+  function findAnswer(q){
+    const text = q.toLowerCase();
+    let best = null, bestScore = 0;
+    for(const item of KB){
+      let score = 0;
+      for(const k of item.keys){ if(text.includes(k)) score++; }
+      if(score > bestScore){ bestScore = score; best = item; }
+    }
+    return best ? best.a : FALLBACK;
+  }
+
+  const toggle = document.getElementById('aiToggle');
+  const panel = document.getElementById('aiPanel');
+  const closeBtn = document.getElementById('aiClose');
+  const messages = document.getElementById('aiMessages');
+  const suggestionsEl = document.getElementById('aiSuggestions');
+  const form = document.getElementById('aiForm');
+  const input = document.getElementById('aiInput');
+
+  function addMsg(text, who){
+    const div = document.createElement('div');
+    div.className = 'ai-msg ' + (who === 'user' ? 'ai-msg-user' : 'ai-msg-bot');
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function renderSuggestions(){
+    suggestionsEl.innerHTML = '';
+    SUGGESTIONS.forEach(s=>{
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'ai-chip';
+      chip.textContent = s;
+      chip.addEventListener('click', ()=>{ handleQuestion(s); });
+      suggestionsEl.appendChild(chip);
+    });
+  }
+
+  function handleQuestion(q){
+    if(!q.trim()) return;
+    addMsg(q, 'user');
+    input.value = '';
+    setTimeout(()=>{ addMsg(findAnswer(q), 'bot'); }, 220);
+  }
+
+  let opened = false;
+  function openPanel(){
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded','true');
+    if(!opened){
+      addMsg(GREETING, 'bot');
+      renderSuggestions();
+      opened = true;
+    }
+    input.focus();
+  }
+  function closePanel(){
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded','false');
+  }
+
+  if(toggle){
+    toggle.addEventListener('click', ()=>{ panel.hidden ? openPanel() : closePanel(); });
+  }
+  if(closeBtn){ closeBtn.addEventListener('click', closePanel); }
+  if(form){
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      handleQuestion(input.value);
+    });
+  }
+})();
 </script>
 </body>
 </html>
